@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WORLDMMOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'WORLDMMO.dbo.Magasin' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="Magasin">
+    <Key>
+      <PropertyRef Name="id_magasin" />
+    </Key>
+    <Property Name="id_magasin" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="nchar" MaxLength="50" />
+    <Property Name="prix" Type="real" />
+    <Property Name="poids" Type="nchar" MaxLength="10" />
+    <Property Name="quantite" Type="nchar" MaxLength="10" />
+    <Property Name="tax" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'WORLDMMO.dbo.Ville' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <EntityType Name="Ville">
+    <Key>
+      <PropertyRef Name="idVille" />
+    </Key>
+    <Property Name="idVille" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="nchar" MaxLength="10" />
+    <Property Name="x" Type="nchar" MaxLength="10" />
+    <Property Name="y" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="WORLDMMOModelStoreContainer">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Magasin" EntityType="Self.Magasin" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Magasin].[id_magasin] AS [id_magasin], 
+    [Magasin].[nom] AS [nom], 
+    [Magasin].[prix] AS [prix], 
+    [Magasin].[poids] AS [poids], 
+    [Magasin].[quantite] AS [quantite], 
+    [Magasin].[tax] AS [tax]
+    FROM [dbo].[Magasin] AS [Magasin]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Ville" EntityType="Self.Ville" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Ville].[idVille] AS [idVille], 
+    [Ville].[nom] AS [nom], 
+    [Ville].[x] AS [x], 
+    [Ville].[y] AS [y]
+    FROM [dbo].[Ville] AS [Ville]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

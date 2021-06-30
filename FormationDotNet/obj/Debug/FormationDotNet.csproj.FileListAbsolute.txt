@@ -1,0 +1,7 @@
+C:\Users\Pedroo\source\repos\FormationDotNet\FormationDotNet\bin\Debug\FormationDotNet.exe.config
+C:\Users\Pedroo\source\repos\FormationDotNet\FormationDotNet\bin\Debug\FormationDotNet.exe
+C:\Users\Pedroo\source\repos\FormationDotNet\FormationDotNet\bin\Debug\FormationDotNet.pdb
+C:\Users\Pedroo\source\repos\FormationDotNet\FormationDotNet\obj\Debug\FormationDotNet.csprojAssemblyReference.cache
+C:\Users\Pedroo\source\repos\FormationDotNet\FormationDotNet\obj\Debug\FormationDotNet.csproj.CoreCompileInputs.cache
+C:\Users\Pedroo\source\repos\FormationDotNet\FormationDotNet\obj\Debug\FormationDotNet.exe
+C:\Users\Pedroo\source\repos\FormationDotNet\FormationDotNet\obj\Debug\FormationDotNet.pdb

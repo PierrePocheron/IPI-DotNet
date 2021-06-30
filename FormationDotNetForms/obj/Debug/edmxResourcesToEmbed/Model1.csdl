@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WORLDMMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Magasin">
+    <Key>
+      <PropertyRef Name="id_magasin" />
+    </Key>
+    <Property Name="id_magasin" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nom" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="prix" Type="Single" />
+    <Property Name="poids" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="quantite" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="tax" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="WORLDMMOMag" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Magasin" EntityType="Self.Magasin" />
+  </EntityContainer>
+</Schema>

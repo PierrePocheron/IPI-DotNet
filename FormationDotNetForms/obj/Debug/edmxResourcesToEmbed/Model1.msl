@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WORLDMMOModelStoreContainer" CdmEntityContainer="WORLDMMOMag">
+    <EntitySetMapping Name="Magasin">
+      <EntityTypeMapping TypeName="WORLDMMOModel.Magasin">
+        <MappingFragment StoreEntitySet="Magasin">
+          <ScalarProperty Name="id_magasin" ColumnName="id_magasin" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prix" ColumnName="prix" />
+          <ScalarProperty Name="poids" ColumnName="poids" />
+          <ScalarProperty Name="quantite" ColumnName="quantite" />
+          <ScalarProperty Name="tax" ColumnName="tax" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

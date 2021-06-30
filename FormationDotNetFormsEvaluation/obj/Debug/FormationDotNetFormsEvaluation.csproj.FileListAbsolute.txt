@@ -1,0 +1,16 @@
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\bin\Debug\FormationDotNetFormsEvaluation.exe.config
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\bin\Debug\FormationDotNetFormsEvaluation.exe
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\bin\Debug\FormationDotNetFormsEvaluation.pdb
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\obj\Debug\FormationDotNetFormsEvaluation.InterfaceGuilde.resources
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\obj\Debug\FormationDotNetFormsEvaluation.Properties.Resources.resources
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\obj\Debug\FormationDotNetFormsEvaluation.csproj.GenerateResource.cache
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\obj\Debug\FormationDotNetFormsEvaluation.csproj.CoreCompileInputs.cache
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\obj\Debug\FormationDotNetFormsEvaluation.exe
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\obj\Debug\FormationDotNetFormsEvaluation.pdb
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\bin\Debug\EntityFramework.dll
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\bin\Debug\EntityFramework.xml
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\bin\Debug\fr\EntityFramework.resources.dll
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\obj\Debug\FormationDotNetFormsEvaluation.csproj.CopyComplete
+C:\Users\Pedroo\Google Drive\LicenceCDEV-IPI\DotNET\ProjetSave\FormationDotNet\FormationDotNetFormsEvaluation\obj\Debug\FormationDotNetFormsEvaluation.csprojAssemblyReference.cache

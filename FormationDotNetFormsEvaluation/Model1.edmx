@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WORLDMMOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Heros">
+          <Key>
+            <PropertyRef Name="id_hero" />
+          </Key>
+          <Property Name="id_hero" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom" Type="varchar" MaxLength="50" />
+          <Property Name="prenom" Type="varchar" MaxLength="50" />
+          <Property Name="specialite" Type="varchar" MaxLength="50" />
+          <Property Name="classe" Type="varchar" MaxLength="50" />
+          <Property Name="lvl" Type="int" />
+          <Property Name="puissance" Type="int" />
+          <Property Name="nbMissionReussi" Type="int" />
+          <Property Name="reputation" Type="int" />
+        </EntityType>
+        <EntityType Name="Inventaire">
+          <Key>
+            <PropertyRef Name="id_inventaire" />
+          </Key>
+          <Property Name="id_inventaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_hero" Type="int" Nullable="false" />
+          <Property Name="objetNom" Type="varchar" MaxLength="50" />
+          <Property Name="objetLvl" Type="varchar" MaxLength="50" />
+          <Property Name="objetQuantite" Type="varchar" MaxLength="50" />
+          <Property Name="objetDescription" Type="varchar" MaxLength="5000" />
+          <Property Name="objetPrix" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Inventaire_Heros">
+          <End Role="Heros" Type="Self.Heros" Multiplicity="1" />
+          <End Role="Inventaire" Type="Self.Inventaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Heros">
+              <PropertyRef Name="id_hero" />
+            </Principal>
+            <Dependent Role="Inventaire">
+              <PropertyRef Name="id_hero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WORLDMMOModelStoreContainer">
+          <EntitySet Name="Heros" EntityType="Self.Heros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventaire" EntityType="Self.Inventaire" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Inventaire_Heros" Association="Self.FK_Inventaire_Heros">
+            <End Role="Heros" EntitySet="Heros" />
+            <End Role="Inventaire" EntitySet="Inventaire" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WORLDMMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Heros">
+          <Key>
+            <PropertyRef Name="id_hero" />
+          </Key>
+          <Property Name="id_hero" Type="Int32" Nullable="false" />
+          <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="specialite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="classe" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lvl" Type="Int32" />
+          <Property Name="puissance" Type="Int32" />
+          <Property Name="nbMissionReussi" Type="Int32" />
+          <Property Name="reputation" Type="Int32" />
+          <NavigationProperty Name="Inventaire" Relationship="WORLDMMOModel.FK_Inventaire_Heros" FromRole="Heros" ToRole="Inventaire" />
+        </EntityType>
+        <EntityType Name="Inventaire">
+          <Key>
+            <PropertyRef Name="id_inventaire" />
+          </Key>
+          <Property Name="id_inventaire" Type="Int32" Nullable="false" />
+          <Property Name="id_hero" Type="Int32" Nullable="false" />
+          <Property Name="objetNom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="objetLvl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="objetQuantite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="objetDescription" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="objetPrix" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Heros" Relationship="WORLDMMOModel.FK_Inventaire_Heros" FromRole="Inventaire" ToRole="Heros" />
+        </EntityType>
+        <Association Name="FK_Inventaire_Inventaire">
+          <End Role="Inventaire" Type="Self.Inventaire" Multiplicity="1" />
+          <End Role="Inventaire1" Type="Self.Inventaire" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Inventaire">
+              <PropertyRef Name="id_inventaire" />
+            </Principal>
+            <Dependent Role="Inventaire1">
+              <PropertyRef Name="id_inventaire" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WORLDMMOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Heros" EntityType="Self.Heros" />
+          <EntitySet Name="Inventaire" EntityType="Self.Inventaire" />
+          <AssociationSet Name="FK_Inventaire_Inventaire" Association="Self.FK_Inventaire_Inventaire">
+            <End Role="Inventaire" EntitySet="Inventaire" />
+            <End Role="Inventaire1" EntitySet="Inventaire" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventaire_Heros" Association="WORLDMMOModel.FK_Inventaire_Heros">
+            <End Role="Heros" EntitySet="Heros" />
+            <End Role="Inventaire" EntitySet="Inventaire" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Inventaire_Heros">
+          <End Type="WORLDMMOModel.Heros" Role="Heros" Multiplicity="1" />
+          <End Type="WORLDMMOModel.Inventaire" Role="Inventaire" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Heros">
+              <PropertyRef Name="id_hero" />
+            </Principal>
+            <Dependent Role="Inventaire">
+              <PropertyRef Name="id_hero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WORLDMMOModelStoreContainer" CdmEntityContainer="WORLDMMOEntities">
+          <EntitySetMapping Name="Heros">
+            <EntityTypeMapping TypeName="WORLDMMOModel.Heros">
+              <MappingFragment StoreEntitySet="Heros">
+                <ScalarProperty Name="id_hero" ColumnName="id_hero" />
+                <ScalarProperty Name="nom" ColumnName="nom" />
+                <ScalarProperty Name="prenom" ColumnName="prenom" />
+                <ScalarProperty Name="specialite" ColumnName="specialite" />
+                <ScalarProperty Name="classe" ColumnName="classe" />
+                <ScalarProperty Name="lvl" ColumnName="lvl" />
+                <ScalarProperty Name="puissance" ColumnName="puissance" />
+                <ScalarProperty Name="nbMissionReussi" ColumnName="nbMissionReussi" />
+                <ScalarProperty Name="reputation" ColumnName="reputation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventaire">
+            <EntityTypeMapping TypeName="WORLDMMOModel.Inventaire">
+              <MappingFragment StoreEntitySet="Inventaire">
+                <ScalarProperty Name="id_inventaire" ColumnName="id_inventaire" />
+                <ScalarProperty Name="id_hero" ColumnName="id_hero" />
+                <ScalarProperty Name="objetNom" ColumnName="objetNom" />
+                <ScalarProperty Name="objetLvl" ColumnName="objetLvl" />
+                <ScalarProperty Name="objetQuantite" ColumnName="objetQuantite" />
+                <ScalarProperty Name="objetDescription" ColumnName="objetDescription" />
+                <ScalarProperty Name="objetPrix" ColumnName="objetPrix" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="WORLDMMOModelStoreContainer" CdmEntityContainer="WORLDMMOEntities">
+    <EntitySetMapping Name="Heros">
+      <EntityTypeMapping TypeName="WORLDMMOModel.Heros">
+        <MappingFragment StoreEntitySet="Heros">
+          <ScalarProperty Name="id_hero" ColumnName="id_hero" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="specialite" ColumnName="specialite" />
+          <ScalarProperty Name="classe" ColumnName="classe" />
+          <ScalarProperty Name="lvl" ColumnName="lvl" />
+          <ScalarProperty Name="puissance" ColumnName="puissance" />
+          <ScalarProperty Name="nbMissionReussi" ColumnName="nbMissionReussi" />
+          <ScalarProperty Name="reputation" ColumnName="reputation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventaire">
+      <EntityTypeMapping TypeName="WORLDMMOModel.Inventaire">
+        <MappingFragment StoreEntitySet="Inventaire">
+          <ScalarProperty Name="id_inventaire" ColumnName="id_inventaire" />
+          <ScalarProperty Name="id_hero" ColumnName="id_hero" />
+          <ScalarProperty Name="objetNom" ColumnName="objetNom" />
+          <ScalarProperty Name="objetLvl" ColumnName="objetLvl" />
+          <ScalarProperty Name="objetQuantite" ColumnName="objetQuantite" />
+          <ScalarProperty Name="objetDescription" ColumnName="objetDescription" />
+          <ScalarProperty Name="objetPrix" ColumnName="objetPrix" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
