@@ -1,10 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="WORLDMMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="WORLDMMOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Heros" EntityType="WORLDMMOModel.Heros" />
+    <EntitySet Name="Inventaire" EntityType="WORLDMMOModel.Inventaire" />
+    <AssociationSet Name="HeroInventaire" Association="WORLDMMOModel.HeroInventaire">
+      <End Role="Heros" EntitySet="Heros" />
+      <End Role="Inventaire" EntitySet="Inventaire" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="Heros">
     <Key>
       <PropertyRef Name="id_hero" />
     </Key>
-    <Property Name="id_hero" Type="Int32" Nullable="false" />
+    <Property Name="id_hero" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="prenom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="specialite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
@@ -13,55 +21,22 @@
     <Property Name="puissance" Type="Int32" />
     <Property Name="nbMissionReussi" Type="Int32" />
     <Property Name="reputation" Type="Int32" />
-    <NavigationProperty Name="Inventaire" Relationship="WORLDMMOModel.FK_Inventaire_Heros" FromRole="Heros" ToRole="Inventaire" />
+    <NavigationProperty Name="Inventaire" Relationship="WORLDMMOModel.HeroInventaire" FromRole="Heros" ToRole="Inventaire" />
   </EntityType>
   <EntityType Name="Inventaire">
     <Key>
       <PropertyRef Name="id_inventaire" />
     </Key>
-    <Property Name="id_inventaire" Type="Int32" Nullable="false" />
-    <Property Name="id_hero" Type="Int32" Nullable="false" />
+    <Property Name="id_inventaire" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="objetNom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="objetLvl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="objetQuantite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="objetLvl" Type="Int32" />
+    <Property Name="objetQuantite" Type="Int32" />
     <Property Name="objetDescription" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
-    <Property Name="objetPrix" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Heros" Relationship="WORLDMMOModel.FK_Inventaire_Heros" FromRole="Inventaire" ToRole="Heros" />
+    <Property Name="objetPrix" Type="Single" />
+    <NavigationProperty Name="Heros" Relationship="WORLDMMOModel.HeroInventaire" FromRole="Inventaire" ToRole="Heros" />
   </EntityType>
-  <Association Name="FK_Inventaire_Inventaire">
-    <End Role="Inventaire" Type="Self.Inventaire" Multiplicity="1" />
-    <End Role="Inventaire1" Type="Self.Inventaire" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Inventaire">
-        <PropertyRef Name="id_inventaire" />
-      </Principal>
-      <Dependent Role="Inventaire1">
-        <PropertyRef Name="id_inventaire" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="WORLDMMOEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Heros" EntityType="Self.Heros" />
-    <EntitySet Name="Inventaire" EntityType="Self.Inventaire" />
-    <AssociationSet Name="FK_Inventaire_Inventaire" Association="Self.FK_Inventaire_Inventaire">
-      <End Role="Inventaire" EntitySet="Inventaire" />
-      <End Role="Inventaire1" EntitySet="Inventaire" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inventaire_Heros" Association="WORLDMMOModel.FK_Inventaire_Heros">
-      <End Role="Heros" EntitySet="Heros" />
-      <End Role="Inventaire" EntitySet="Inventaire" />
-    </AssociationSet>
-  </EntityContainer>
-  <Association Name="FK_Inventaire_Heros">
-    <End Type="WORLDMMOModel.Heros" Role="Heros" Multiplicity="1" />
+  <Association Name="HeroInventaire">
+    <End Type="WORLDMMOModel.Heros" Role="Heros" Multiplicity="*" />
     <End Type="WORLDMMOModel.Inventaire" Role="Inventaire" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Heros">
-        <PropertyRef Name="id_hero" />
-      </Principal>
-      <Dependent Role="Inventaire">
-        <PropertyRef Name="id_hero" />
-      </Dependent>
-    </ReferentialConstraint>
   </Association>
 </Schema>

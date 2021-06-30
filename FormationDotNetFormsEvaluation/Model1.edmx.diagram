@@ -5,11 +5,16 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4bb91cc367114074bc58f4eacb34d891" Name="Diagram1">
-        <EntityTypeShape EntityType="WORLDMMOModel.Heros" Width="2" PointX="4.375" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WORLDMMOModel.Inventaire" Width="2" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="WORLDMMOModel.FK_Inventaire_Inventaire" ManuallyRouted="false" >
+        <EntityTypeShape EntityType="WORLDMMOModel.Heros" Width="1.5" PointX="2.25" PointY="1.125" />
+        <EntityTypeShape EntityType="WORLDMMOModel.Inventaire" Width="1.5" PointX="6.875" PointY="1.375" />
+        <AssociationConnector Association="WORLDMMOModel.HeroInventaire" ManuallyRouted="true" >
+          <ConnectorPoint PointX="3.75" PointY="2.7208968098958333" />
+          <ConnectorPoint PointX="4.78125" PointY="2.7208968098958333" />
+          <ConnectorPoint PointX="4.78125" PointY="2.2521468098958333" />
+          <ConnectorPoint PointX="5.84375" PointY="2.2521468098958333" />
+          <ConnectorPoint PointX="5.84375" PointY="2.53263085632345" />
+          <ConnectorPoint PointX="6.875" PointY="2.53263085632345" />
         </AssociationConnector>
-        <AssociationConnector Association="WORLDMMOModel.FK_Inventaire_Heros" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

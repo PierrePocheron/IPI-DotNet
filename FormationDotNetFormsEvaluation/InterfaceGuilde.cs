@@ -23,7 +23,13 @@ namespace FormationDotNetFormsEvaluation
             //  Initialisation du DGV Hero
             WORLDMMOEntities entiteHero = new WORLDMMOEntities();
             List<Heros> listeHeros = entiteHero.Heros.ToList();
+            //var nomHeros = entiteHero.Heros.Select(a => new Heros { nom = a.nom, prenom = a.prenom });
+
+            Console.WriteLine(listeHeros.ToString());
+
+
             dgvHero.DataSource = listeHeros;
+            //cmbHero.DataSource = nomHeros;
 
             //  Initialisation du DGV Inventaire
             /*WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
@@ -33,8 +39,10 @@ namespace FormationDotNetFormsEvaluation
 
         private void btnHeroAjouter_Click(object sender, EventArgs e)
         {
+            // Création d'un objet Hero
             Heros unHero = new Heros();
 
+            //  Valorisation de notre objet héro
             unHero.nom              =   txbHeroNom.Text;
             unHero.prenom           =   txbHeroPrenom.Text;
             unHero.specialite       =   txbHeroSpecialite.Text;
@@ -45,10 +53,21 @@ namespace FormationDotNetFormsEvaluation
             unHero.puissance        =   (int)numUPDOHeroPuissance.Value;
             unHero.reputation       =   (int)numUPDOHeroReputation.Value;
 
+            //  Création d'une entite correspondant a notre héro
             WORLDMMOEntities entiteHero = new WORLDMMOEntities();
             entiteHero.Heros.Add(unHero);
-
+            //  Envoi en bdd du héro
             entiteHero.SaveChanges();
+
+            //  Création d'une entite correspondant a l'inventaire de notre héro
+            /*Inventaire unInventaire = new Inventaire();
+            unInventaire.id_hero = unHero.id_hero;
+            WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
+            entiteInventaire.Inventaire.Add(unInventaire);
+            entiteInventaire.SaveChanges();*/
+
+            Console.WriteLine(unHero.id_hero);
+
             refreshDataHero();
             viderLesChampsHero();
 
@@ -89,11 +108,26 @@ namespace FormationDotNetFormsEvaluation
         {
             if (dgvHero.Rows.GetRowCount(DataGridViewElementStates.Selected) > 0)
             {
-                WORLDMMOEntities entiteHero = new WORLDMMOEntities();
                 int idHero = int.Parse(dgvHero.SelectedRows[0].Cells[0].Value.ToString());
-                Console.WriteLine(idHero);
 
+                
+
+                /*WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();     
+                Inventaire inventaireASupprimer = entiteInventaire.Inventaire.Where(a => a.id_hero == idHero).FirstOrDefault();
+
+                Console.WriteLine(entiteInventaire.Inventaire.Where(a => a.id_hero == idHero).FirstOrDefault());
+                entiteInventaire.Inventaire.Remove(inventaireASupprimer);
+                entiteInventaire.SaveChanges();*/
+
+                WORLDMMOEntities entiteHero = new WORLDMMOEntities();
+                Console.WriteLine(idHero);
                 Heros heroASupprimer = entiteHero.Heros.Where(a => a.id_hero == idHero).FirstOrDefault();
+
+                /*if (entiteInventaire.Inventaire.Where(a => a.id_hero == idHero).FirstOrDefault())
+                {
+
+                }*/
+
                 entiteHero.Heros.Remove(heroASupprimer);
 
                 entiteHero.SaveChanges();
@@ -111,10 +145,10 @@ namespace FormationDotNetFormsEvaluation
             Inventaire unInventaire = new Inventaire();
 
             unInventaire.objetNom = txbInventaireNom.Text;
-            unInventaire.objetLvl = txbInventaireDescription.Text;
-            unInventaire.objetQuantite = txbInventaireLvl.Text;
-            unInventaire.objetDescription = txbInventaireQuantite.Text;
-            unInventaire.objetPrix = txbInventairePrix.Text;
+            unInventaire.objetLvl = (int)numUDInventaireLvl.Value;
+            unInventaire.objetQuantite = (int)numUDInventaireQuantite.Value;
+            unInventaire.objetDescription = txbInventaireDescription.Text;
+            unInventaire.objetPrix = (float)numUDInventairePrix.Value;
 
             WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
             entiteInventaire.Inventaire.Add(unInventaire);
@@ -135,10 +169,10 @@ namespace FormationDotNetFormsEvaluation
                 Inventaire inventaireAModifier = entiteInventaire.Inventaire.Where(a => a.id_inventaire == idInventaire).FirstOrDefault();
 
                 inventaireAModifier.objetNom = txbInventaireNom.Text;
-                inventaireAModifier.objetLvl = txbInventaireDescription.Text;
-                inventaireAModifier.objetQuantite = txbInventaireLvl.Text;
-                inventaireAModifier.objetDescription = txbInventaireQuantite.Text;
-                inventaireAModifier.objetPrix = txbInventairePrix.Text;
+                inventaireAModifier.objetLvl = (int)numUDInventaireLvl.Value;
+                inventaireAModifier.objetQuantite = (int)numUDInventaireQuantite.Value;
+                inventaireAModifier.objetDescription = txbInventaireDescription.Text;
+                inventaireAModifier.objetPrix = (float)numUDInventairePrix.Value;
 
                 entiteInventaire.SaveChanges();
                 refreshDataInventaire();
@@ -193,9 +227,9 @@ namespace FormationDotNetFormsEvaluation
         {
             txbInventaireNom.Text = "";
             txbInventaireDescription.Text = "";
-            txbInventaireLvl.Text = "";
-            txbInventairePrix.Text = "";
-            txbInventaireQuantite.Text = "";
+            numUDInventaireLvl.Value = 0;
+            numUDInventairePrix.Value = 0;
+            numUDInventaireQuantite.Value = 0;
 
             //numUPDOHeroID.Value = 0;
             numUPDOHeroLvl.Value = 0;
@@ -222,17 +256,22 @@ namespace FormationDotNetFormsEvaluation
                 txbHeroClasse.Text                  = dgvHero.SelectedRows[0].Cells[4].Value.ToString();
 
                 numUPDOHeroLvl.Value                = decimal.Parse(dgvHero.SelectedRows[0].Cells[5].Value.ToString());
-                numUPDOHeroNbMissionsReussi.Value   = decimal.Parse(dgvHero.SelectedRows[0].Cells[6].Value.ToString());
-                numUPDOHeroReputation.Value         = decimal.Parse(dgvHero.SelectedRows[0].Cells[7].Value.ToString());
+                numUPDOHeroPuissance.Value          = decimal.Parse(dgvHero.SelectedRows[0].Cells[6].Value.ToString());
+                numUPDOHeroNbMissionsReussi.Value   = decimal.Parse(dgvHero.SelectedRows[0].Cells[7].Value.ToString());
+                numUPDOHeroReputation.Value         = decimal.Parse(dgvHero.SelectedRows[0].Cells[8].Value.ToString());
+
+                lblHeroSelecNom.Text                = "Héro sélectionné : " + dgvHero.SelectedRows[0].Cells[1].Value.ToString();
+                lblHeroSelecQuantiteObjetInventaire.Text = "Objets dans l'inventaire : " + "5";
 
 
                 WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
                 int idHero = int.Parse(dgvHero.SelectedRows[0].Cells[0].Value.ToString());
-                Console.WriteLine(idHero);
 
-                Inventaire inventaireAModifier = entiteInventaire.Inventaire.Where(a => a.id_inventaire == idHero).FirstOrDefault();
+                Console.WriteLine("id hero selec : " + idHero);
 
-                if (inventaireAModifier == null)
+                //Inventaire inventaireAModifier = entiteInventaire.Inventaire.Where(a => a.id_inventaire == idHero).FirstOrDefault();
+
+                /*if (inventaireAModifier == null)
                 {
                     Console.WriteLine("il est null");
                 }
@@ -240,12 +279,12 @@ namespace FormationDotNetFormsEvaluation
                 {
                     Console.WriteLine(inventaireAModifier);
 
-                    txbInventaireNom.Text = inventaireAModifier.objetNom;
-                    txbInventaireDescription.Text = inventaireAModifier.objetDescription;
-                    txbInventaireLvl.Text = inventaireAModifier.objetLvl;
-                    txbInventaireQuantite.Text = inventaireAModifier.objetQuantite;
-                    txbInventairePrix.Text = inventaireAModifier.objetPrix;
-                }
+                    txbInventaireNom.Text           = inventaireAModifier.objetNom;
+                    txbInventaireDescription.Text   = inventaireAModifier.objetDescription;
+                    numUDInventaireLvl.Value        = inventaireAModifier.objetLvl;
+                    numUDInventairePrix.Value       = inventaireAModifier.objetQuantite;
+                    numUDInventaireQuantite.Value   = inventaireAModifier.objetPrix;
+                }*/
             }
         }
 
@@ -261,6 +300,24 @@ namespace FormationDotNetFormsEvaluation
             }
 
         }
+
+
+        private void checkInventaire()
+        {
+            Boolean check = false;
+            
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblInventaireHeroID_Click(object sender, EventArgs e)
+        {
+
+        }
+
         // =========== Les fonctions privées ==========
         // =========== Les fonctions privées ==========
 

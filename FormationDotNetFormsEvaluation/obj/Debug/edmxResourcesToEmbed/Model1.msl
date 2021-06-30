@@ -4,30 +4,37 @@
     <EntitySetMapping Name="Heros">
       <EntityTypeMapping TypeName="WORLDMMOModel.Heros">
         <MappingFragment StoreEntitySet="Heros">
-          <ScalarProperty Name="id_hero" ColumnName="id_hero" />
-          <ScalarProperty Name="nom" ColumnName="nom" />
-          <ScalarProperty Name="prenom" ColumnName="prenom" />
-          <ScalarProperty Name="specialite" ColumnName="specialite" />
-          <ScalarProperty Name="classe" ColumnName="classe" />
-          <ScalarProperty Name="lvl" ColumnName="lvl" />
-          <ScalarProperty Name="puissance" ColumnName="puissance" />
-          <ScalarProperty Name="nbMissionReussi" ColumnName="nbMissionReussi" />
           <ScalarProperty Name="reputation" ColumnName="reputation" />
+          <ScalarProperty Name="nbMissionReussi" ColumnName="nbMissionReussi" />
+          <ScalarProperty Name="puissance" ColumnName="puissance" />
+          <ScalarProperty Name="lvl" ColumnName="lvl" />
+          <ScalarProperty Name="classe" ColumnName="classe" />
+          <ScalarProperty Name="specialite" ColumnName="specialite" />
+          <ScalarProperty Name="prenom" ColumnName="prenom" />
+          <ScalarProperty Name="nom" ColumnName="nom" />
+          <ScalarProperty Name="id_hero" ColumnName="id_hero" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Inventaire">
       <EntityTypeMapping TypeName="WORLDMMOModel.Inventaire">
         <MappingFragment StoreEntitySet="Inventaire">
-          <ScalarProperty Name="id_inventaire" ColumnName="id_inventaire" />
-          <ScalarProperty Name="id_hero" ColumnName="id_hero" />
-          <ScalarProperty Name="objetNom" ColumnName="objetNom" />
-          <ScalarProperty Name="objetLvl" ColumnName="objetLvl" />
-          <ScalarProperty Name="objetQuantite" ColumnName="objetQuantite" />
-          <ScalarProperty Name="objetDescription" ColumnName="objetDescription" />
           <ScalarProperty Name="objetPrix" ColumnName="objetPrix" />
+          <ScalarProperty Name="objetDescription" ColumnName="objetDescription" />
+          <ScalarProperty Name="objetQuantite" ColumnName="objetQuantite" />
+          <ScalarProperty Name="objetLvl" ColumnName="objetLvl" />
+          <ScalarProperty Name="objetNom" ColumnName="objetNom" />
+          <ScalarProperty Name="id_inventaire" ColumnName="id_inventaire" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="HeroInventaire" TypeName="WORLDMMOModel.HeroInventaire" StoreEntitySet="HeroInventaire">
+      <EndProperty Name="Inventaire">
+        <ScalarProperty Name="id_inventaire" ColumnName="id_inventaire" />
+      </EndProperty>
+      <EndProperty Name="Heros">
+        <ScalarProperty Name="id_hero" ColumnName="id_hero" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

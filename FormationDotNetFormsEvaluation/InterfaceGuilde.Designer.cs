@@ -46,8 +46,6 @@
             this.numUPDOHeroNbMissionsReussi = new System.Windows.Forms.NumericUpDown();
             this.numUPDOHeroReputation = new System.Windows.Forms.NumericUpDown();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.txbInventaireLvl = new System.Windows.Forms.TextBox();
-            this.lblInventaireHeroID = new System.Windows.Forms.Label();
             this.lblObjet = new System.Windows.Forms.Label();
             this.lblInventaireLvl = new System.Windows.Forms.Label();
             this.lblInventaireQuantite = new System.Windows.Forms.Label();
@@ -55,9 +53,6 @@
             this.lblInventairePrix = new System.Windows.Forms.Label();
             this.txbInventaireNom = new System.Windows.Forms.TextBox();
             this.txbInventaireDescription = new System.Windows.Forms.TextBox();
-            this.txbInventaireQuantite = new System.Windows.Forms.TextBox();
-            this.txbInventairePrix = new System.Windows.Forms.TextBox();
-            this.cmbHero = new System.Windows.Forms.ComboBox();
             this.dgvHero = new System.Windows.Forms.DataGridView();
             this.dgvInventaire = new System.Windows.Forms.DataGridView();
             this.btnHeroAjouter = new System.Windows.Forms.Button();
@@ -66,6 +61,13 @@
             this.btnInventaireAjouter = new System.Windows.Forms.Button();
             this.btnInventaireModifier = new System.Windows.Forms.Button();
             this.btnInventaireSupprimer = new System.Windows.Forms.Button();
+            this.numUDInventaireLvl = new System.Windows.Forms.NumericUpDown();
+            this.numUDInventaireQuantite = new System.Windows.Forms.NumericUpDown();
+            this.numUDInventairePrix = new System.Windows.Forms.NumericUpDown();
+            this.lblHeroSelecNom = new System.Windows.Forms.Label();
+            this.lblHeroSelecQuantiteObjetInventaire = new System.Windows.Forms.Label();
+            this.lblInventaireHeroID = new System.Windows.Forms.Label();
+            this.cmbHero = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUPDOHeroLvl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUPDOHeroPuissance)).BeginInit();
@@ -74,6 +76,9 @@
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHero)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventaire)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDInventaireLvl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDInventaireQuantite)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDInventairePrix)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -97,7 +102,7 @@
             this.tableLayoutPanel1.Controls.Add(this.numUPDOHeroPuissance, 1, 5);
             this.tableLayoutPanel1.Controls.Add(this.numUPDOHeroNbMissionsReussi, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.numUPDOHeroReputation, 1, 7);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 41);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(13, 124);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 8;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -245,8 +250,6 @@
             this.tableLayoutPanel2.ColumnCount = 2;
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel2.Controls.Add(this.txbInventaireLvl, 1, 3);
-            this.tableLayoutPanel2.Controls.Add(this.lblInventaireHeroID, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.lblObjet, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.lblInventaireLvl, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.lblInventaireQuantite, 0, 4);
@@ -254,10 +257,10 @@
             this.tableLayoutPanel2.Controls.Add(this.lblInventairePrix, 0, 6);
             this.tableLayoutPanel2.Controls.Add(this.txbInventaireNom, 1, 2);
             this.tableLayoutPanel2.Controls.Add(this.txbInventaireDescription, 1, 5);
-            this.tableLayoutPanel2.Controls.Add(this.txbInventaireQuantite, 1, 4);
-            this.tableLayoutPanel2.Controls.Add(this.txbInventairePrix, 1, 6);
-            this.tableLayoutPanel2.Controls.Add(this.cmbHero, 1, 1);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(12, 364);
+            this.tableLayoutPanel2.Controls.Add(this.numUDInventaireLvl, 1, 3);
+            this.tableLayoutPanel2.Controls.Add(this.numUDInventaireQuantite, 1, 4);
+            this.tableLayoutPanel2.Controls.Add(this.numUDInventairePrix, 1, 6);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(13, 447);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 7;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -270,22 +273,6 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(194, 196);
             this.tableLayoutPanel2.TabIndex = 9;
-            // 
-            // txbInventaireLvl
-            // 
-            this.txbInventaireLvl.Location = new System.Drawing.Point(100, 86);
-            this.txbInventaireLvl.Name = "txbInventaireLvl";
-            this.txbInventaireLvl.Size = new System.Drawing.Size(91, 20);
-            this.txbInventaireLvl.TabIndex = 14;
-            // 
-            // lblInventaireHeroID
-            // 
-            this.lblInventaireHeroID.AutoSize = true;
-            this.lblInventaireHeroID.Location = new System.Drawing.Point(3, 27);
-            this.lblInventaireHeroID.Name = "lblInventaireHeroID";
-            this.lblInventaireHeroID.Size = new System.Drawing.Size(50, 13);
-            this.lblInventaireHeroID.TabIndex = 1;
-            this.lblInventaireHeroID.Text = "Hero - ID";
             // 
             // lblObjet
             // 
@@ -346,32 +333,10 @@
             this.txbInventaireDescription.Size = new System.Drawing.Size(91, 20);
             this.txbInventaireDescription.TabIndex = 13;
             // 
-            // txbInventaireQuantite
-            // 
-            this.txbInventaireQuantite.Location = new System.Drawing.Point(100, 113);
-            this.txbInventaireQuantite.Name = "txbInventaireQuantite";
-            this.txbInventaireQuantite.Size = new System.Drawing.Size(91, 20);
-            this.txbInventaireQuantite.TabIndex = 15;
-            // 
-            // txbInventairePrix
-            // 
-            this.txbInventairePrix.Location = new System.Drawing.Point(100, 170);
-            this.txbInventairePrix.Name = "txbInventairePrix";
-            this.txbInventairePrix.Size = new System.Drawing.Size(91, 20);
-            this.txbInventairePrix.TabIndex = 16;
-            // 
-            // cmbHero
-            // 
-            this.cmbHero.FormattingEnabled = true;
-            this.cmbHero.Location = new System.Drawing.Point(100, 30);
-            this.cmbHero.Name = "cmbHero";
-            this.cmbHero.Size = new System.Drawing.Size(91, 21);
-            this.cmbHero.TabIndex = 17;
-            // 
             // dgvHero
             // 
             this.dgvHero.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvHero.Location = new System.Drawing.Point(243, 12);
+            this.dgvHero.Location = new System.Drawing.Point(244, 95);
             this.dgvHero.Name = "dgvHero";
             this.dgvHero.Size = new System.Drawing.Size(637, 254);
             this.dgvHero.TabIndex = 10;
@@ -380,7 +345,7 @@
             // dgvInventaire
             // 
             this.dgvInventaire.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInventaire.Location = new System.Drawing.Point(243, 364);
+            this.dgvInventaire.Location = new System.Drawing.Point(244, 447);
             this.dgvInventaire.Name = "dgvInventaire";
             this.dgvInventaire.Size = new System.Drawing.Size(637, 196);
             this.dgvInventaire.TabIndex = 11;
@@ -388,7 +353,7 @@
             // 
             // btnHeroAjouter
             // 
-            this.btnHeroAjouter.Location = new System.Drawing.Point(904, 15);
+            this.btnHeroAjouter.Location = new System.Drawing.Point(905, 98);
             this.btnHeroAjouter.Name = "btnHeroAjouter";
             this.btnHeroAjouter.Size = new System.Drawing.Size(75, 23);
             this.btnHeroAjouter.TabIndex = 12;
@@ -398,7 +363,7 @@
             // 
             // btnHeroModifier
             // 
-            this.btnHeroModifier.Location = new System.Drawing.Point(904, 128);
+            this.btnHeroModifier.Location = new System.Drawing.Point(905, 211);
             this.btnHeroModifier.Name = "btnHeroModifier";
             this.btnHeroModifier.Size = new System.Drawing.Size(75, 23);
             this.btnHeroModifier.TabIndex = 13;
@@ -408,7 +373,7 @@
             // 
             // btnHeroSupprimer
             // 
-            this.btnHeroSupprimer.Location = new System.Drawing.Point(904, 246);
+            this.btnHeroSupprimer.Location = new System.Drawing.Point(905, 329);
             this.btnHeroSupprimer.Name = "btnHeroSupprimer";
             this.btnHeroSupprimer.Size = new System.Drawing.Size(75, 23);
             this.btnHeroSupprimer.TabIndex = 14;
@@ -418,7 +383,7 @@
             // 
             // btnInventaireAjouter
             // 
-            this.btnInventaireAjouter.Location = new System.Drawing.Point(904, 367);
+            this.btnInventaireAjouter.Location = new System.Drawing.Point(905, 450);
             this.btnInventaireAjouter.Name = "btnInventaireAjouter";
             this.btnInventaireAjouter.Size = new System.Drawing.Size(75, 23);
             this.btnInventaireAjouter.TabIndex = 15;
@@ -428,7 +393,7 @@
             // 
             // btnInventaireModifier
             // 
-            this.btnInventaireModifier.Location = new System.Drawing.Point(904, 450);
+            this.btnInventaireModifier.Location = new System.Drawing.Point(905, 533);
             this.btnInventaireModifier.Name = "btnInventaireModifier";
             this.btnInventaireModifier.Size = new System.Drawing.Size(75, 23);
             this.btnInventaireModifier.TabIndex = 16;
@@ -438,7 +403,7 @@
             // 
             // btnInventaireSupprimer
             // 
-            this.btnInventaireSupprimer.Location = new System.Drawing.Point(904, 537);
+            this.btnInventaireSupprimer.Location = new System.Drawing.Point(905, 620);
             this.btnInventaireSupprimer.Name = "btnInventaireSupprimer";
             this.btnInventaireSupprimer.Size = new System.Drawing.Size(75, 23);
             this.btnInventaireSupprimer.TabIndex = 17;
@@ -446,11 +411,73 @@
             this.btnInventaireSupprimer.UseVisualStyleBackColor = true;
             this.btnInventaireSupprimer.Click += new System.EventHandler(this.btnInventaireSupprimer_Click);
             // 
+            // numUDInventaireLvl
+            // 
+            this.numUDInventaireLvl.Location = new System.Drawing.Point(100, 86);
+            this.numUDInventaireLvl.Name = "numUDInventaireLvl";
+            this.numUDInventaireLvl.Size = new System.Drawing.Size(91, 20);
+            this.numUDInventaireLvl.TabIndex = 18;
+            // 
+            // numUDInventaireQuantite
+            // 
+            this.numUDInventaireQuantite.Location = new System.Drawing.Point(100, 113);
+            this.numUDInventaireQuantite.Name = "numUDInventaireQuantite";
+            this.numUDInventaireQuantite.Size = new System.Drawing.Size(91, 20);
+            this.numUDInventaireQuantite.TabIndex = 19;
+            // 
+            // numUDInventairePrix
+            // 
+            this.numUDInventairePrix.Location = new System.Drawing.Point(100, 170);
+            this.numUDInventairePrix.Name = "numUDInventairePrix";
+            this.numUDInventairePrix.Size = new System.Drawing.Size(91, 20);
+            this.numUDInventairePrix.TabIndex = 20;
+            // 
+            // lblHeroSelecNom
+            // 
+            this.lblHeroSelecNom.AutoSize = true;
+            this.lblHeroSelecNom.Location = new System.Drawing.Point(268, 58);
+            this.lblHeroSelecNom.Name = "lblHeroSelecNom";
+            this.lblHeroSelecNom.Size = new System.Drawing.Size(96, 13);
+            this.lblHeroSelecNom.TabIndex = 18;
+            this.lblHeroSelecNom.Text = "Héro sélectionné : ";
+            this.lblHeroSelecNom.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // lblHeroSelecQuantiteObjetInventaire
+            // 
+            this.lblHeroSelecQuantiteObjetInventaire.AutoSize = true;
+            this.lblHeroSelecQuantiteObjetInventaire.Location = new System.Drawing.Point(520, 58);
+            this.lblHeroSelecQuantiteObjetInventaire.Name = "lblHeroSelecQuantiteObjetInventaire";
+            this.lblHeroSelecQuantiteObjetInventaire.Size = new System.Drawing.Size(125, 13);
+            this.lblHeroSelecQuantiteObjetInventaire.TabIndex = 19;
+            this.lblHeroSelecQuantiteObjetInventaire.Text = "Objets dans l\'inventaire : ";
+            // 
+            // lblInventaireHeroID
+            // 
+            this.lblInventaireHeroID.AutoSize = true;
+            this.lblInventaireHeroID.Location = new System.Drawing.Point(10, 410);
+            this.lblInventaireHeroID.Name = "lblInventaireHeroID";
+            this.lblInventaireHeroID.Size = new System.Drawing.Size(116, 13);
+            this.lblInventaireHeroID.TabIndex = 20;
+            this.lblInventaireHeroID.Text = "Sélectionner un Héro  :";
+            this.lblInventaireHeroID.Click += new System.EventHandler(this.lblInventaireHeroID_Click);
+            // 
+            // cmbHero
+            // 
+            this.cmbHero.FormattingEnabled = true;
+            this.cmbHero.Location = new System.Drawing.Point(132, 407);
+            this.cmbHero.Name = "cmbHero";
+            this.cmbHero.Size = new System.Drawing.Size(161, 21);
+            this.cmbHero.TabIndex = 21;
+            // 
             // InterfaceGuilde
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 594);
+            this.ClientSize = new System.Drawing.Size(1030, 655);
+            this.Controls.Add(this.lblInventaireHeroID);
+            this.Controls.Add(this.cmbHero);
+            this.Controls.Add(this.lblHeroSelecQuantiteObjetInventaire);
+            this.Controls.Add(this.lblHeroSelecNom);
             this.Controls.Add(this.btnInventaireSupprimer);
             this.Controls.Add(this.btnInventaireModifier);
             this.Controls.Add(this.btnInventaireAjouter);
@@ -474,7 +501,11 @@
             this.tableLayoutPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHero)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventaire)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDInventaireLvl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDInventaireQuantite)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numUDInventairePrix)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -490,7 +521,6 @@
         private System.Windows.Forms.Label lblHeroNbMissionsReussi;
         private System.Windows.Forms.Label lblReputation;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Label lblInventaireHeroID;
         private System.Windows.Forms.Label lblObjet;
         private System.Windows.Forms.TextBox txbHeroPrenom;
         private System.Windows.Forms.TextBox txbHeroNom;
@@ -514,9 +544,12 @@
         private System.Windows.Forms.Button btnInventaireAjouter;
         private System.Windows.Forms.Button btnInventaireModifier;
         private System.Windows.Forms.Button btnInventaireSupprimer;
-        private System.Windows.Forms.TextBox txbInventaireLvl;
-        private System.Windows.Forms.TextBox txbInventaireQuantite;
-        private System.Windows.Forms.TextBox txbInventairePrix;
+        private System.Windows.Forms.NumericUpDown numUDInventaireLvl;
+        private System.Windows.Forms.NumericUpDown numUDInventaireQuantite;
+        private System.Windows.Forms.NumericUpDown numUDInventairePrix;
+        private System.Windows.Forms.Label lblHeroSelecNom;
+        private System.Windows.Forms.Label lblHeroSelecQuantiteObjetInventaire;
+        private System.Windows.Forms.Label lblInventaireHeroID;
         private System.Windows.Forms.ComboBox cmbHero;
     }
 }
