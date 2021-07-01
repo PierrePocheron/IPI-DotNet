@@ -95,18 +95,22 @@ namespace FormationDotNetFormsEvaluation
             entiteHero.SaveChanges();
 
             //  Création d'une entite correspondant a l'inventaire de notre héro
-            Inventaire unInventaire = new Inventaire();
+            /*Inventaire unInventaire = new Inventaire();
             unInventaire.id_hero = unHero.id_hero;
             WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
             entiteInventaire.Inventaire.Add(unInventaire);
             entiteInventaire.SaveChanges();
-
+            */
             Console.WriteLine(unHero.id_hero);
 
             refreshDataHero();
             viderLesChampsHero();
 
-            refreshDataInventaire();
+            int index = dgvHero.Rows.Count - 1;
+            dgvHero.Rows[index].Selected = true;
+
+            //refreshDataInventaire();
+            remplirDgvInventaire();
             viderLesChampsInventaire();
         }
 
@@ -176,21 +180,33 @@ namespace FormationDotNetFormsEvaluation
 
         private void btnInventaireAjouter_Click(object sender, EventArgs e)
         {
+            if (dgvHero.SelectedRows.Count > 0)
+            {
+                Inventaire unInventaire = new Inventaire();
 
-            Inventaire unInventaire = new Inventaire();
+                //String heroSelectionner = cmbListeHero.SelectedItem.ToString();
+                //TODO
+                //VERIFIER SI LIGNE DGV HERO EST SELECTIONNER
+                unInventaire.id_hero = int.Parse(dgvHero.SelectedRows[0].Cells[0].Value.ToString());
+                unInventaire.objetNom = txbInventaireNom.Text;
+                unInventaire.objetLvl = (int)numUDInventaireLvl.Value;
+                unInventaire.objetQuantite = (int)numUDInventaireQuantite.Value;
+                unInventaire.objetDescription = txbInventaireDescription.Text;
+                unInventaire.objetPrix = (float)numUDInventairePrix.Value;
 
-            unInventaire.objetNom = txbInventaireNom.Text;
-            unInventaire.objetLvl = (int)numUDInventaireLvl.Value;
-            unInventaire.objetQuantite = (int)numUDInventaireQuantite.Value;
-            unInventaire.objetDescription = txbInventaireDescription.Text;
-            unInventaire.objetPrix = (float)numUDInventairePrix.Value;
+                WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
+                entiteInventaire.Inventaire.Add(unInventaire);
 
-            WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
-            entiteInventaire.Inventaire.Add(unInventaire);
-
-            entiteInventaire.SaveChanges();
-            refreshDataInventaire();
-            viderLesChampsInventaire();
+                entiteInventaire.SaveChanges();
+                //refreshDataInventaire();
+                remplirDgvInventaire();
+                viderLesChampsInventaire();
+            }
+            else
+            {
+                Console.WriteLine("Ajouter Inventaire - Aucune ligne sélectionnée.");
+            }
+            
         }
 
         private void btnInventaireModifier_Click(object sender, EventArgs e)
@@ -210,7 +226,8 @@ namespace FormationDotNetFormsEvaluation
                 inventaireAModifier.objetPrix = (float)numUDInventairePrix.Value;
 
                 entiteInventaire.SaveChanges();
-                refreshDataInventaire();
+                //refreshDataInventaire();
+                remplirDgvInventaire();
                 viderLesChampsInventaire();
             }
         }
@@ -228,7 +245,7 @@ namespace FormationDotNetFormsEvaluation
                 entiteInventaire.Inventaire.Remove(inventaireASupprimer);
 
                 entiteInventaire.SaveChanges();
-                refreshDataInventaire();
+                remplirDgvInventaire();
                 viderLesChampsInventaire();
             }
 
@@ -290,9 +307,9 @@ namespace FormationDotNetFormsEvaluation
                 txbHeroSpecialite.Text              = dgvHero.SelectedRows[0].Cells[3].Value.ToString();
                 txbHeroClasse.Text                  = dgvHero.SelectedRows[0].Cells[4].Value.ToString();
 
-                numUPDOHeroLvl.Value                = decimal.Parse(dgvHero.SelectedRows[0].Cells[5].Value.ToString());
+                numUPDOHeroLvl.Value                = int.Parse(dgvHero.SelectedRows[0].Cells[5].Value.ToString());
                 numUPDOHeroPuissance.Value          = decimal.Parse(dgvHero.SelectedRows[0].Cells[6].Value.ToString());
-                numUPDOHeroNbMissionsReussi.Value   = decimal.Parse(dgvHero.SelectedRows[0].Cells[7].Value.ToString());
+                numUPDOHeroNbMissionsReussi.Value   = int.Parse(dgvHero.SelectedRows[0].Cells[7].Value.ToString());
                 numUPDOHeroReputation.Value         = decimal.Parse(dgvHero.SelectedRows[0].Cells[8].Value.ToString());
 
                 lblHeroSelecNom.Text                = "Héro sélectionné : " + dgvHero.SelectedRows[0].Cells[1].Value.ToString();
@@ -304,7 +321,7 @@ namespace FormationDotNetFormsEvaluation
 
                 Console.WriteLine("id hero selec : " + idHero);
 
-                remplirDgvInventaire(idHero);
+                remplirDgvInventaire();
 
 
 
@@ -341,8 +358,22 @@ namespace FormationDotNetFormsEvaluation
 
         }
 
-        private void remplirDgvInventaire(int idHero)
+        private int recupIdHeroSelectedRow()
         {
+            int idHeroSelected = int.Parse(dgvHero.SelectedRows[0].Cells[0].Value.ToString());
+            if (idHeroSelected < 0)
+            {
+                return 0;
+            }
+            else
+            {
+                return idHeroSelected;
+            }
+        }
+
+        private void remplirDgvInventaire()
+        {
+            int idHero = recupIdHeroSelectedRow();
             WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
             var queryHeroInventaire = entiteInventaire.Inventaire
                     .Where(a => a.id_hero == idHero)
@@ -358,11 +389,6 @@ namespace FormationDotNetFormsEvaluation
         }
 
 
-        private void checkInventaire()
-        {
-            Boolean check = false;
-            
-        }
 
         private void label1_Click(object sender, EventArgs e)
         {

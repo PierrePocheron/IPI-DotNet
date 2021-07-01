@@ -456,15 +456,15 @@
             this.lblInventaireHeroID.AutoSize = true;
             this.lblInventaireHeroID.Location = new System.Drawing.Point(10, 410);
             this.lblInventaireHeroID.Name = "lblInventaireHeroID";
-            this.lblInventaireHeroID.Size = new System.Drawing.Size(116, 13);
+            this.lblInventaireHeroID.Size = new System.Drawing.Size(252, 13);
             this.lblInventaireHeroID.TabIndex = 20;
-            this.lblInventaireHeroID.Text = "Sélectionner un Héro  :";
+            this.lblInventaireHeroID.Text = "Sélectionner un Héro pour consulter son inventaire :";
             this.lblInventaireHeroID.Click += new System.EventHandler(this.lblInventaireHeroID_Click);
             // 
             // cmbListeHero
             // 
             this.cmbListeHero.FormattingEnabled = true;
-            this.cmbListeHero.Location = new System.Drawing.Point(132, 407);
+            this.cmbListeHero.Location = new System.Drawing.Point(808, 391);
             this.cmbListeHero.Name = "cmbListeHero";
             this.cmbListeHero.Size = new System.Drawing.Size(161, 21);
             this.cmbListeHero.TabIndex = 21;
