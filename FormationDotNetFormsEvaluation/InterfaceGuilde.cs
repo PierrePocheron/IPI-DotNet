@@ -17,14 +17,10 @@ namespace FormationDotNetFormsEvaluation
             InitializeComponent();
         }
 
-        //  Initialisation de la fenêtre
         private void InterfaceGuilde_Load(object sender, EventArgs e)
         {
-            //  Initialisation du DGV Hero
             WORLDMMOEntities entiteHero = new WORLDMMOEntities();
             List<Heros> listeHeros = entiteHero.Heros.ToList();
-
-
 
             var queryListeHeros = entiteHero.Heros
                     .ToList<Heros>();
@@ -32,52 +28,20 @@ namespace FormationDotNetFormsEvaluation
             Console.WriteLine("Query réussi : " + queryListeHeros);
             foreach(var unHero in queryListeHeros) {
                 Console.WriteLine("Hero : id = {0} & nom = {1} & prenom = {2}", unHero.id_hero, unHero.nom, unHero.prenom);
-                cmbListeHero.Items.Add(unHero.id_hero + " | " + unHero.nom + " - " + unHero.prenom);
             }
-
-            //cmbListeHero.
-
-            /*      QUERY AVEC WHERE
-             var queryListeHeros = entiteHero.Heros
-                    .Where(a => a.nom == "pop")
-                    .ToList<Heros>();
-             */  
-
-            //var nomHeros = entiteHero.Heros.Select(a => new Heros { nom = a.nom, prenom = a.prenom });
-
-
-            /** 
-          IQueryable<Heros> listeNomHeros = entiteHero.Heros.AsQueryable<Heros>()
-              .Where(t => t.nom == "")
-              .OrderBy(t => t.nom)
-              .Select(t => t.nom)
-              .ToList();
-
-
-          
-            IQueryable<tb_usuario> Consulta = contexto.tb_usuario.AsQueryable<tb_usuario>()
-                                                  .Where(t => t.usu_Ativo == 1)
-                                                  .OrderBy(t => t.usu_Login)
-                                                  .Select(t => t.ColumnName);
-           */
-
-
-
             dgvHero.DataSource = listeHeros;
-            //cmbHero.DataSource = nomHeros;
-
-            //  Initialisation du DGV Inventaire
-            /*WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
-            List<Inventaire> listeInventaires = entiteInventaire.Inventaire.ToList();
-            dgvInventaire.DataSource = listeInventaires;*/
+            if (dgvHero.SelectedRows.Count > 0)
+            {
+                dgvHero.Rows[0].Selected = true;
+            }  
         }
+
+        #region Elements Functions
 
         private void btnHeroAjouter_Click(object sender, EventArgs e)
         {
-            // Création d'un objet Hero
             Heros unHero = new Heros();
 
-            //  Valorisation de notre objet héro
             unHero.nom              =   txbHeroNom.Text;
             unHero.prenom           =   txbHeroPrenom.Text;
             unHero.specialite       =   txbHeroSpecialite.Text;
@@ -88,29 +52,21 @@ namespace FormationDotNetFormsEvaluation
             unHero.puissance        =   (int)numUPDOHeroPuissance.Value;
             unHero.reputation       =   (int)numUPDOHeroReputation.Value;
 
-            //  Création d'une entite correspondant a notre héro
             WORLDMMOEntities entiteHero = new WORLDMMOEntities();
             entiteHero.Heros.Add(unHero);
-            //  Envoi en bdd du héro
+
             entiteHero.SaveChanges();
 
-            //  Création d'une entite correspondant a l'inventaire de notre héro
-            /*Inventaire unInventaire = new Inventaire();
-            unInventaire.id_hero = unHero.id_hero;
-            WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
-            entiteInventaire.Inventaire.Add(unInventaire);
-            entiteInventaire.SaveChanges();
-            */
+
             Console.WriteLine(unHero.id_hero);
 
-            refreshDataHero();
+            refreshDgvHero();
             viderLesChampsHero();
 
             int index = dgvHero.Rows.Count - 1;
             dgvHero.Rows[index].Selected = true;
 
-            //refreshDataInventaire();
-            remplirDgvInventaire();
+            refreshDgvInventaire();
             viderLesChampsInventaire();
         }
 
@@ -135,10 +91,10 @@ namespace FormationDotNetFormsEvaluation
                 heroAModifier.reputation = (int)numUPDOHeroReputation.Value;
 
                 entiteHero.SaveChanges();
-                refreshDataHero();
+                refreshDgvHero();
                 viderLesChampsHero();
 
-                refreshDataInventaire();
+                refreshDgvInventaire();
                 viderLesChampsInventaire();
             }
         }
@@ -149,31 +105,17 @@ namespace FormationDotNetFormsEvaluation
             {
                 int idHero = int.Parse(dgvHero.SelectedRows[0].Cells[0].Value.ToString());
 
-                
-
-                /*WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();     
-                Inventaire inventaireASupprimer = entiteInventaire.Inventaire.Where(a => a.id_hero == idHero).FirstOrDefault();
-
-                Console.WriteLine(entiteInventaire.Inventaire.Where(a => a.id_hero == idHero).FirstOrDefault());
-                entiteInventaire.Inventaire.Remove(inventaireASupprimer);
-                entiteInventaire.SaveChanges();*/
-
                 WORLDMMOEntities entiteHero = new WORLDMMOEntities();
                 Console.WriteLine(idHero);
                 Heros heroASupprimer = entiteHero.Heros.Where(a => a.id_hero == idHero).FirstOrDefault();
 
-                /*if (entiteInventaire.Inventaire.Where(a => a.id_hero == idHero).FirstOrDefault())
-                {
-
-                }*/
-
                 entiteHero.Heros.Remove(heroASupprimer);
 
                 entiteHero.SaveChanges();
-                refreshDataHero();
+                refreshDgvHero();
                 viderLesChampsHero();
 
-                refreshDataInventaire();
+                refreshDgvInventaire();
                 viderLesChampsInventaire();
             }
         }
@@ -184,9 +126,6 @@ namespace FormationDotNetFormsEvaluation
             {
                 Inventaire unInventaire = new Inventaire();
 
-                //String heroSelectionner = cmbListeHero.SelectedItem.ToString();
-                //TODO
-                //VERIFIER SI LIGNE DGV HERO EST SELECTIONNER
                 unInventaire.id_hero = int.Parse(dgvHero.SelectedRows[0].Cells[0].Value.ToString());
                 unInventaire.objetNom = txbInventaireNom.Text;
                 unInventaire.objetLvl = (int)numUDInventaireLvl.Value;
@@ -198,15 +137,13 @@ namespace FormationDotNetFormsEvaluation
                 entiteInventaire.Inventaire.Add(unInventaire);
 
                 entiteInventaire.SaveChanges();
-                //refreshDataInventaire();
-                remplirDgvInventaire();
-                viderLesChampsInventaire();
+
+                updateInventaire();
             }
             else
             {
                 Console.WriteLine("Ajouter Inventaire - Aucune ligne sélectionnée.");
-            }
-            
+            }        
         }
 
         private void btnInventaireModifier_Click(object sender, EventArgs e)
@@ -226,9 +163,8 @@ namespace FormationDotNetFormsEvaluation
                 inventaireAModifier.objetPrix = (float)numUDInventairePrix.Value;
 
                 entiteInventaire.SaveChanges();
-                //refreshDataInventaire();
-                remplirDgvInventaire();
-                viderLesChampsInventaire();
+
+                updateInventaire();
             }
         }
 
@@ -245,14 +181,26 @@ namespace FormationDotNetFormsEvaluation
                 entiteInventaire.Inventaire.Remove(inventaireASupprimer);
 
                 entiteInventaire.SaveChanges();
-                remplirDgvInventaire();
-                viderLesChampsInventaire();
-            }
 
+                updateInventaire();
+            }
         }
 
-        // =========== Les fonctions privées ==========
-        // =========== Les fonctions privées ==========
+        private void dgvHero_SelectionChanged(object sender, EventArgs e)
+        {
+            remplirChampsHero();
+        }
+
+        private void dgvInventaire_SelectionChanged(object sender, EventArgs e)
+        {
+            remplirChampsInventaire();
+        }
+
+        #endregion 
+
+
+        #region Private Functions
+
         private void viderLesChampsHero()
         {
             txbHeroNom.Text = "";
@@ -260,14 +208,13 @@ namespace FormationDotNetFormsEvaluation
             txbHeroSpecialite.Text = "";
             txbHeroClasse.Text = "";
 
-            //numUPDOHeroID.Value = 0;
-            numUPDOHeroLvl.Value = 0;
+            numUPDOHeroLvl.Value = 1;
             numUPDOHeroNbMissionsReussi.Value = 0;
-            numUPDOHeroPuissance.Value = 0;
-            numUPDOHeroReputation.Value = 0;
+            numUPDOHeroPuissance.Value = 1;
+            numUPDOHeroReputation.Value = 1;
         }
 
-        private void refreshDataHero()
+        private void refreshDgvHero()
         {
             dgvHero.DataSource = null;
             WORLDMMOEntities entiteHero = new WORLDMMOEntities();
@@ -279,26 +226,39 @@ namespace FormationDotNetFormsEvaluation
         {
             txbInventaireNom.Text = "";
             txbInventaireDescription.Text = "";
-            numUDInventaireLvl.Value = 0;
-            numUDInventairePrix.Value = 0;
-            numUDInventaireQuantite.Value = 0;
+            numUDInventaireLvl.Value = 1;
+            numUDInventairePrix.Value = 1;
+            numUDInventaireQuantite.Value = 1;
 
-            //numUPDOHeroID.Value = 0;
-            numUPDOHeroLvl.Value = 0;
-            numUPDOHeroNbMissionsReussi.Value = 0;
-            numUPDOHeroPuissance.Value = 0;
-            numUPDOHeroReputation.Value = 0;
         }
 
-        private void refreshDataInventaire()
+        private void refreshDgvInventaire()
         {
             dgvInventaire.DataSource = null;
-            WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
-            List<Inventaire> listeInventaires = entiteInventaire.Inventaire.ToList();
-            dgvInventaire.DataSource = listeInventaires;
+            if (dgvHero.SelectedRows.Count > 0)
+            {
+                int idHero = recupIdHeroSelectedRow();
+                WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
+                var queryHeroInventaire = entiteInventaire.Inventaire
+                        .Where(a => a.id_hero == idHero)
+                        .ToList<Inventaire>();
+
+                Console.WriteLine("Query Inventaire réussi : " + queryHeroInventaire);
+                foreach (var unInventaire in queryHeroInventaire)
+                {
+                    Console.WriteLine("Inventaire : idInventaire = {0} & idHero = {1} & nom = {2} & prenom = {3}", unInventaire.id_inventaire, unInventaire.id_hero, unInventaire.objetNom, unInventaire.objetPrix);
+                }
+
+                dgvInventaire.DataSource = queryHeroInventaire;
+            }
+
+            if (dgvInventaire.Rows.Count > 0)
+            {
+                dgvInventaire.Rows[0].Selected = true;
+            }
         }
 
-        private void dgvHero_SelectionChanged(object sender, EventArgs e)
+        private void remplirChampsHero()
         {
             if (dgvHero.Rows.GetRowCount(DataGridViewElementStates.Selected) > 0)
             {
@@ -312,50 +272,27 @@ namespace FormationDotNetFormsEvaluation
                 numUPDOHeroNbMissionsReussi.Value   = int.Parse(dgvHero.SelectedRows[0].Cells[7].Value.ToString());
                 numUPDOHeroReputation.Value         = decimal.Parse(dgvHero.SelectedRows[0].Cells[8].Value.ToString());
 
-                lblHeroSelecNom.Text                = "Héro sélectionné : " + dgvHero.SelectedRows[0].Cells[1].Value.ToString();
-                lblHeroSelecQuantiteObjetInventaire.Text = "Objets dans l'inventaire : " + "5";
+                lblTitreInventaire.Text = "Inventaire du héro : " + dgvHero.SelectedRows[0].Cells[1].Value.ToString();
 
-
-                
-                int idHero = int.Parse(dgvHero.SelectedRows[0].Cells[0].Value.ToString());
-
-                Console.WriteLine("id hero selec : " + idHero);
-
-                remplirDgvInventaire();
-
-
-
-
-                //Inventaire inventaireAModifier = entiteInventaire.Inventaire.Where(a => a.id_inventaire == idHero).FirstOrDefault();
-
-                /*if (inventaireAModifier == null)
-                {
-                    Console.WriteLine("il est null");
-                }
-                else
-                {
-                    Console.WriteLine(inventaireAModifier);
-
-                    txbInventaireNom.Text           = inventaireAModifier.objetNom;
-                    txbInventaireDescription.Text   = inventaireAModifier.objetDescription;
-                    numUDInventaireLvl.Value        = inventaireAModifier.objetLvl;
-                    numUDInventairePrix.Value       = inventaireAModifier.objetQuantite;
-                    numUDInventaireQuantite.Value   = inventaireAModifier.objetPrix;
-                }*/
+                updateInventaire();
             }
         }
 
-        private void dgvInventaire_SelectionChanged(object sender, EventArgs e)
+        private void remplirChampsInventaire()
         {
             if (dgvInventaire.Rows.GetRowCount(DataGridViewElementStates.Selected) > 0)
             {
-                /*txbInventaireNom.Text               = dgvInventaire.SelectedRows[0].Cells[0].Value.ToString();
-                txbInventaireDescription.Text       = dgvInventaire.SelectedRows[0].Cells[0].Value.ToString();
-                txbInventaireLvl.Text               = dgvInventaire.SelectedRows[0].Cells[0].Value.ToString();
-                txbInventaireQuantite.Text          = dgvInventaire.SelectedRows[0].Cells[0].Value.ToString();
-                txbInventairePrix.Text              = dgvInventaire.SelectedRows[0].Cells[0].Value.ToString();*/
+                txbInventaireNom.Text               = dgvInventaire.SelectedRows[0].Cells[2].Value.ToString();
+                txbInventaireDescription.Text       = dgvInventaire.SelectedRows[0].Cells[5].Value.ToString();
+                                                      
+                numUDInventaireLvl.Value            = int.Parse(dgvInventaire.SelectedRows[0].Cells[3].Value.ToString());
+                numUDInventairePrix.Value           = decimal.Parse(dgvInventaire.SelectedRows[0].Cells[6].Value.ToString());
+                numUDInventaireQuantite.Value       = int.Parse(dgvInventaire.SelectedRows[0].Cells[4].Value.ToString());
             }
-
+            else
+            {
+                viderLesChampsInventaire();
+            }
         }
 
         private int recupIdHeroSelectedRow()
@@ -371,24 +308,36 @@ namespace FormationDotNetFormsEvaluation
             }
         }
 
-        private void remplirDgvInventaire()
+        private void remplirChampsNbObjetInventaire()
         {
-            int idHero = recupIdHeroSelectedRow();
-            WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
-            var queryHeroInventaire = entiteInventaire.Inventaire
-                    .Where(a => a.id_hero == idHero)
-                    .ToList<Inventaire>();
-
-            Console.WriteLine("Query Inventaire réussi : " + queryHeroInventaire);
-            foreach (var unInventaire in queryHeroInventaire)
+            if (dgvInventaire.Rows.Count > 0)
             {
-                Console.WriteLine("Inventaire : idInventaire = {0} & idHero = {1} & nom = {2} & prenom = {3}", unInventaire.id_inventaire, unInventaire.id_hero, unInventaire.objetNom, unInventaire.objetPrix);
+                int nombre = dgvInventaire.Rows.Count;
+                lblHeroSelecQuantiteObjetInventaireNombre.Text = nombre.ToString();
             }
-
-            dgvInventaire.DataSource = queryHeroInventaire;
+            else
+            {
+                lblHeroSelecQuantiteObjetInventaireNombre.Text = "0";
+            }
         }
 
+        private void updateHero()
+        {
+            refreshDgvHero();
+            remplirChampsHero();
+        }
 
+        private void updateInventaire()
+        {
+            refreshDgvInventaire();
+            remplirChampsInventaire();
+            remplirChampsNbObjetInventaire();
+        }
+
+        #endregion
+
+
+        #region uselessCode
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -400,11 +349,16 @@ namespace FormationDotNetFormsEvaluation
 
         }
 
-        
+        private void label2_Click(object sender, EventArgs e)
+        {
 
-        // =========== Les fonctions privées ==========
-        // =========== Les fonctions privées ==========
+        }
 
+        private void label2_Click_1(object sender, EventArgs e)
+        {
 
+        }
+
+        #endregion
     }
 }
