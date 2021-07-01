@@ -14,20 +14,12 @@ namespace FormationDotNetFormsEvaluation
     
     public partial class Inventaire
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Inventaire()
-        {
-            this.Heros = new HashSet<Heros>();
-        }
-    
         public int id_inventaire { get; set; }
+        public int id_hero { get; set; }
         public string objetNom { get; set; }
         public Nullable<int> objetLvl { get; set; }
         public Nullable<int> objetQuantite { get; set; }
         public string objetDescription { get; set; }
         public Nullable<float> objetPrix { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Heros> Heros { get; set; }
     }
 }

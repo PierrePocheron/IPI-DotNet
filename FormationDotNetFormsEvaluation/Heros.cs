@@ -14,12 +14,6 @@ namespace FormationDotNetFormsEvaluation
     
     public partial class Heros
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Heros()
-        {
-            this.Inventaire = new HashSet<Inventaire>();
-        }
-    
         public int id_hero { get; set; }
         public string nom { get; set; }
         public string prenom { get; set; }
@@ -29,8 +23,5 @@ namespace FormationDotNetFormsEvaluation
         public Nullable<int> puissance { get; set; }
         public Nullable<int> nbMissionReussi { get; set; }
         public Nullable<int> reputation { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Inventaire> Inventaire { get; set; }
     }
 }

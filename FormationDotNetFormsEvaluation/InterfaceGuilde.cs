@@ -23,9 +23,44 @@ namespace FormationDotNetFormsEvaluation
             //  Initialisation du DGV Hero
             WORLDMMOEntities entiteHero = new WORLDMMOEntities();
             List<Heros> listeHeros = entiteHero.Heros.ToList();
+
+
+
+            var queryListeHeros = entiteHero.Heros
+                    .ToList<Heros>();
+
+            Console.WriteLine("Query réussi : " + queryListeHeros);
+            foreach(var unHero in queryListeHeros) {
+                Console.WriteLine("Hero : id = {0} & nom = {1} & prenom = {2}", unHero.id_hero, unHero.nom, unHero.prenom);
+                cmbListeHero.Items.Add(unHero.id_hero + " | " + unHero.nom + " - " + unHero.prenom);
+            }
+
+            //cmbListeHero.
+
+            /*      QUERY AVEC WHERE
+             var queryListeHeros = entiteHero.Heros
+                    .Where(a => a.nom == "pop")
+                    .ToList<Heros>();
+             */  
+
             //var nomHeros = entiteHero.Heros.Select(a => new Heros { nom = a.nom, prenom = a.prenom });
 
-            Console.WriteLine(listeHeros.ToString());
+
+            /** 
+          IQueryable<Heros> listeNomHeros = entiteHero.Heros.AsQueryable<Heros>()
+              .Where(t => t.nom == "")
+              .OrderBy(t => t.nom)
+              .Select(t => t.nom)
+              .ToList();
+
+
+          
+            IQueryable<tb_usuario> Consulta = contexto.tb_usuario.AsQueryable<tb_usuario>()
+                                                  .Where(t => t.usu_Ativo == 1)
+                                                  .OrderBy(t => t.usu_Login)
+                                                  .Select(t => t.ColumnName);
+           */
+
 
 
             dgvHero.DataSource = listeHeros;
@@ -60,11 +95,11 @@ namespace FormationDotNetFormsEvaluation
             entiteHero.SaveChanges();
 
             //  Création d'une entite correspondant a l'inventaire de notre héro
-            /*Inventaire unInventaire = new Inventaire();
+            Inventaire unInventaire = new Inventaire();
             unInventaire.id_hero = unHero.id_hero;
             WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
             entiteInventaire.Inventaire.Add(unInventaire);
-            entiteInventaire.SaveChanges();*/
+            entiteInventaire.SaveChanges();
 
             Console.WriteLine(unHero.id_hero);
 
@@ -264,10 +299,15 @@ namespace FormationDotNetFormsEvaluation
                 lblHeroSelecQuantiteObjetInventaire.Text = "Objets dans l'inventaire : " + "5";
 
 
-                WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
+                
                 int idHero = int.Parse(dgvHero.SelectedRows[0].Cells[0].Value.ToString());
 
                 Console.WriteLine("id hero selec : " + idHero);
+
+                remplirDgvInventaire(idHero);
+
+
+
 
                 //Inventaire inventaireAModifier = entiteInventaire.Inventaire.Where(a => a.id_inventaire == idHero).FirstOrDefault();
 
@@ -301,6 +341,22 @@ namespace FormationDotNetFormsEvaluation
 
         }
 
+        private void remplirDgvInventaire(int idHero)
+        {
+            WORLDMMOEntities entiteInventaire = new WORLDMMOEntities();
+            var queryHeroInventaire = entiteInventaire.Inventaire
+                    .Where(a => a.id_hero == idHero)
+                    .ToList<Inventaire>();
+
+            Console.WriteLine("Query Inventaire réussi : " + queryHeroInventaire);
+            foreach (var unInventaire in queryHeroInventaire)
+            {
+                Console.WriteLine("Inventaire : idInventaire = {0} & idHero = {1} & nom = {2} & prenom = {3}", unInventaire.id_inventaire, unInventaire.id_hero, unInventaire.objetNom, unInventaire.objetPrix);
+            }
+
+            dgvInventaire.DataSource = queryHeroInventaire;
+        }
+
 
         private void checkInventaire()
         {
@@ -317,6 +373,8 @@ namespace FormationDotNetFormsEvaluation
         {
 
         }
+
+        
 
         // =========== Les fonctions privées ==========
         // =========== Les fonctions privées ==========

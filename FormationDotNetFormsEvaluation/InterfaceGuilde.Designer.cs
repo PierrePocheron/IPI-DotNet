@@ -53,6 +53,9 @@
             this.lblInventairePrix = new System.Windows.Forms.Label();
             this.txbInventaireNom = new System.Windows.Forms.TextBox();
             this.txbInventaireDescription = new System.Windows.Forms.TextBox();
+            this.numUDInventaireLvl = new System.Windows.Forms.NumericUpDown();
+            this.numUDInventaireQuantite = new System.Windows.Forms.NumericUpDown();
+            this.numUDInventairePrix = new System.Windows.Forms.NumericUpDown();
             this.dgvHero = new System.Windows.Forms.DataGridView();
             this.dgvInventaire = new System.Windows.Forms.DataGridView();
             this.btnHeroAjouter = new System.Windows.Forms.Button();
@@ -61,24 +64,21 @@
             this.btnInventaireAjouter = new System.Windows.Forms.Button();
             this.btnInventaireModifier = new System.Windows.Forms.Button();
             this.btnInventaireSupprimer = new System.Windows.Forms.Button();
-            this.numUDInventaireLvl = new System.Windows.Forms.NumericUpDown();
-            this.numUDInventaireQuantite = new System.Windows.Forms.NumericUpDown();
-            this.numUDInventairePrix = new System.Windows.Forms.NumericUpDown();
             this.lblHeroSelecNom = new System.Windows.Forms.Label();
             this.lblHeroSelecQuantiteObjetInventaire = new System.Windows.Forms.Label();
             this.lblInventaireHeroID = new System.Windows.Forms.Label();
-            this.cmbHero = new System.Windows.Forms.ComboBox();
+            this.cmbListeHero = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUPDOHeroLvl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUPDOHeroPuissance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUPDOHeroNbMissionsReussi)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUPDOHeroReputation)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHero)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInventaire)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDInventaireLvl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDInventaireQuantite)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDInventairePrix)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHero)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInventaire)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -333,6 +333,27 @@
             this.txbInventaireDescription.Size = new System.Drawing.Size(91, 20);
             this.txbInventaireDescription.TabIndex = 13;
             // 
+            // numUDInventaireLvl
+            // 
+            this.numUDInventaireLvl.Location = new System.Drawing.Point(100, 86);
+            this.numUDInventaireLvl.Name = "numUDInventaireLvl";
+            this.numUDInventaireLvl.Size = new System.Drawing.Size(91, 20);
+            this.numUDInventaireLvl.TabIndex = 18;
+            // 
+            // numUDInventaireQuantite
+            // 
+            this.numUDInventaireQuantite.Location = new System.Drawing.Point(100, 113);
+            this.numUDInventaireQuantite.Name = "numUDInventaireQuantite";
+            this.numUDInventaireQuantite.Size = new System.Drawing.Size(91, 20);
+            this.numUDInventaireQuantite.TabIndex = 19;
+            // 
+            // numUDInventairePrix
+            // 
+            this.numUDInventairePrix.Location = new System.Drawing.Point(100, 170);
+            this.numUDInventairePrix.Name = "numUDInventairePrix";
+            this.numUDInventairePrix.Size = new System.Drawing.Size(91, 20);
+            this.numUDInventairePrix.TabIndex = 20;
+            // 
             // dgvHero
             // 
             this.dgvHero.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -411,27 +432,6 @@
             this.btnInventaireSupprimer.UseVisualStyleBackColor = true;
             this.btnInventaireSupprimer.Click += new System.EventHandler(this.btnInventaireSupprimer_Click);
             // 
-            // numUDInventaireLvl
-            // 
-            this.numUDInventaireLvl.Location = new System.Drawing.Point(100, 86);
-            this.numUDInventaireLvl.Name = "numUDInventaireLvl";
-            this.numUDInventaireLvl.Size = new System.Drawing.Size(91, 20);
-            this.numUDInventaireLvl.TabIndex = 18;
-            // 
-            // numUDInventaireQuantite
-            // 
-            this.numUDInventaireQuantite.Location = new System.Drawing.Point(100, 113);
-            this.numUDInventaireQuantite.Name = "numUDInventaireQuantite";
-            this.numUDInventaireQuantite.Size = new System.Drawing.Size(91, 20);
-            this.numUDInventaireQuantite.TabIndex = 19;
-            // 
-            // numUDInventairePrix
-            // 
-            this.numUDInventairePrix.Location = new System.Drawing.Point(100, 170);
-            this.numUDInventairePrix.Name = "numUDInventairePrix";
-            this.numUDInventairePrix.Size = new System.Drawing.Size(91, 20);
-            this.numUDInventairePrix.TabIndex = 20;
-            // 
             // lblHeroSelecNom
             // 
             this.lblHeroSelecNom.AutoSize = true;
@@ -461,13 +461,13 @@
             this.lblInventaireHeroID.Text = "Sélectionner un Héro  :";
             this.lblInventaireHeroID.Click += new System.EventHandler(this.lblInventaireHeroID_Click);
             // 
-            // cmbHero
+            // cmbListeHero
             // 
-            this.cmbHero.FormattingEnabled = true;
-            this.cmbHero.Location = new System.Drawing.Point(132, 407);
-            this.cmbHero.Name = "cmbHero";
-            this.cmbHero.Size = new System.Drawing.Size(161, 21);
-            this.cmbHero.TabIndex = 21;
+            this.cmbListeHero.FormattingEnabled = true;
+            this.cmbListeHero.Location = new System.Drawing.Point(132, 407);
+            this.cmbListeHero.Name = "cmbListeHero";
+            this.cmbListeHero.Size = new System.Drawing.Size(161, 21);
+            this.cmbListeHero.TabIndex = 21;
             // 
             // InterfaceGuilde
             // 
@@ -475,7 +475,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1030, 655);
             this.Controls.Add(this.lblInventaireHeroID);
-            this.Controls.Add(this.cmbHero);
+            this.Controls.Add(this.cmbListeHero);
             this.Controls.Add(this.lblHeroSelecQuantiteObjetInventaire);
             this.Controls.Add(this.lblHeroSelecNom);
             this.Controls.Add(this.btnInventaireSupprimer);
@@ -499,11 +499,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.numUPDOHeroReputation)).EndInit();
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvHero)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvInventaire)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDInventaireLvl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDInventaireQuantite)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUDInventairePrix)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvHero)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvInventaire)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -550,7 +550,7 @@
         private System.Windows.Forms.Label lblHeroSelecNom;
         private System.Windows.Forms.Label lblHeroSelecQuantiteObjetInventaire;
         private System.Windows.Forms.Label lblInventaireHeroID;
-        private System.Windows.Forms.ComboBox cmbHero;
+        private System.Windows.Forms.ComboBox cmbListeHero;
     }
 }
 

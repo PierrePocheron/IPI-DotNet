@@ -1,13 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="WORLDMMOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="HeroInventaire">
-    <Key>
-      <PropertyRef Name="id_hero" />
-      <PropertyRef Name="id_inventaire" />
-    </Key>
-    <Property Name="id_hero" Type="int" Nullable="false" />
-    <Property Name="id_inventaire" Type="int" Nullable="false" />
-  </EntityType>
   <EntityType Name="Heros">
     <Key>
       <PropertyRef Name="id_hero" />
@@ -27,63 +19,15 @@
       <PropertyRef Name="id_inventaire" />
     </Key>
     <Property Name="id_inventaire" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_hero" Type="int" Nullable="false" />
     <Property Name="objetNom" Type="varchar" MaxLength="50" />
     <Property Name="objetLvl" Type="int" />
     <Property Name="objetQuantite" Type="int" />
     <Property Name="objetDescription" Type="varchar" MaxLength="5000" />
     <Property Name="objetPrix" Type="real" />
   </EntityType>
-  <Association Name="FK_HeroInventaire_Heros">
-    <End Role="Heros" Type="Self.Heros" Multiplicity="1" />
-    <End Role="HeroInventaire" Type="Self.HeroInventaire" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Heros">
-        <PropertyRef Name="id_hero" />
-      </Principal>
-      <Dependent Role="HeroInventaire">
-        <PropertyRef Name="id_hero" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_HeroInventaire_Inventaire">
-    <End Role="Inventaire" Type="Self.Inventaire" Multiplicity="1" />
-    <End Role="HeroInventaire" Type="Self.HeroInventaire" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Inventaire">
-        <PropertyRef Name="id_inventaire" />
-      </Principal>
-      <Dependent Role="HeroInventaire">
-        <PropertyRef Name="id_inventaire" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Inventaire_Inventaire">
-    <End Role="Inventaire" Type="Self.Inventaire" Multiplicity="1" />
-    <End Role="Inventaire1" Type="Self.Inventaire" Multiplicity="0..1" />
-    <ReferentialConstraint>
-      <Principal Role="Inventaire">
-        <PropertyRef Name="id_inventaire" />
-      </Principal>
-      <Dependent Role="Inventaire1">
-        <PropertyRef Name="id_inventaire" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="WORLDMMOModelStoreContainer">
-    <EntitySet Name="HeroInventaire" EntityType="Self.HeroInventaire" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Heros" EntityType="Self.Heros" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Inventaire" EntityType="Self.Inventaire" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_HeroInventaire_Heros" Association="Self.FK_HeroInventaire_Heros">
-      <End Role="Heros" EntitySet="Heros" />
-      <End Role="HeroInventaire" EntitySet="HeroInventaire" />
-    </AssociationSet>
-    <AssociationSet Name="FK_HeroInventaire_Inventaire" Association="Self.FK_HeroInventaire_Inventaire">
-      <End Role="Inventaire" EntitySet="Inventaire" />
-      <End Role="HeroInventaire" EntitySet="HeroInventaire" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Inventaire_Inventaire" Association="Self.FK_Inventaire_Inventaire">
-      <End Role="Inventaire" EntitySet="Inventaire" />
-      <End Role="Inventaire1" EntitySet="Inventaire" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>

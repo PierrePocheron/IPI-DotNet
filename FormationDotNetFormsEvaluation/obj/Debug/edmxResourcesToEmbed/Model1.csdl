@@ -3,10 +3,6 @@
   <EntityContainer Name="WORLDMMOEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Heros" EntityType="WORLDMMOModel.Heros" />
     <EntitySet Name="Inventaire" EntityType="WORLDMMOModel.Inventaire" />
-    <AssociationSet Name="HeroInventaire" Association="WORLDMMOModel.HeroInventaire">
-      <End Role="Heros" EntitySet="Heros" />
-      <End Role="Inventaire" EntitySet="Inventaire" />
-    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Heros">
     <Key>
@@ -21,22 +17,17 @@
     <Property Name="puissance" Type="Int32" />
     <Property Name="nbMissionReussi" Type="Int32" />
     <Property Name="reputation" Type="Int32" />
-    <NavigationProperty Name="Inventaire" Relationship="WORLDMMOModel.HeroInventaire" FromRole="Heros" ToRole="Inventaire" />
   </EntityType>
   <EntityType Name="Inventaire">
     <Key>
       <PropertyRef Name="id_inventaire" />
     </Key>
     <Property Name="id_inventaire" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_hero" Type="Int32" Nullable="false" />
     <Property Name="objetNom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="objetLvl" Type="Int32" />
     <Property Name="objetQuantite" Type="Int32" />
     <Property Name="objetDescription" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
     <Property Name="objetPrix" Type="Single" />
-    <NavigationProperty Name="Heros" Relationship="WORLDMMOModel.HeroInventaire" FromRole="Inventaire" ToRole="Heros" />
   </EntityType>
-  <Association Name="HeroInventaire">
-    <End Type="WORLDMMOModel.Heros" Role="Heros" Multiplicity="*" />
-    <End Type="WORLDMMOModel.Inventaire" Role="Inventaire" Multiplicity="*" />
-  </Association>
 </Schema>

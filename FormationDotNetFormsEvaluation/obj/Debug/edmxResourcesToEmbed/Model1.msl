@@ -24,17 +24,10 @@
           <ScalarProperty Name="objetQuantite" ColumnName="objetQuantite" />
           <ScalarProperty Name="objetLvl" ColumnName="objetLvl" />
           <ScalarProperty Name="objetNom" ColumnName="objetNom" />
+          <ScalarProperty Name="id_hero" ColumnName="id_hero" />
           <ScalarProperty Name="id_inventaire" ColumnName="id_inventaire" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="HeroInventaire" TypeName="WORLDMMOModel.HeroInventaire" StoreEntitySet="HeroInventaire">
-      <EndProperty Name="Inventaire">
-        <ScalarProperty Name="id_inventaire" ColumnName="id_inventaire" />
-      </EndProperty>
-      <EndProperty Name="Heros">
-        <ScalarProperty Name="id_hero" ColumnName="id_hero" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>
